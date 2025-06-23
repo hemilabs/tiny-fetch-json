@@ -5,7 +5,7 @@
  * @returns The response parsed as JSON.
  */
 declare function fetchJson(
-  resource: string,
+  resource: string | URL | Request,
   options?: RequestInit,
 ): Promise<any>;
 
