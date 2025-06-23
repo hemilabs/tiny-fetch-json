@@ -3,8 +3,8 @@
 /**
  * Fetches JSON data from a URL.
  *
- * @param {string} resource - The resource to fetch, i.e. the URL
- * @param {Object} [options] - Additional settings to apply to the request
+ * @param {string|URL|Request} resource - The resource to fetch, i.e. the URL
+ * @param {RequestInit} [options] - Additional settings to apply to the request
  * @returns {Promise<any>} The response parsed as JSON
  */
 async function fetchJson(resource, options = {}) {
