@@ -11,6 +11,12 @@ function mockFetch(response, options = {}) {
       return Promise.reject(options.rejectWith || new Error("Network error"));
     }
     return Promise.resolve({
+      headers: {
+        get: (header) =>
+          header.toLowerCase() === "content-type"
+            ? options.contentType || "application/json"
+            : null,
+      },
       json: () =>
         options.invalidJson
           ? Promise.reject(new Error("Invalid JSON"))
@@ -68,6 +74,18 @@ test("Throws if the response is invalid JSON", async function () {
       await assert.rejects(
         () => fetchJson("https://api.example.com/badjson"),
         /Invalid JSON/,
+      );
+    },
+  );
+});
+
+test("Throws if the response is not a JSON", async function () {
+  await withMockedFetch(
+    mockFetch(null, { contentType: "text/html" }),
+    async function () {
+      await assert.rejects(
+        () => fetchJson("https://api.example.com/badjson"),
+        /Response is not JSON/,
       );
     },
   );

@@ -13,6 +13,12 @@ async function fetchJson(resource, options = {}) {
   if (!res.ok) {
     throw new Error(`Failed to fetch JSON: ${res.status} ${res.statusText}`);
   }
+
+  const contentType = res.headers.get("content-type");
+  if (!contentType || !contentType.includes("application/json")) {
+    throw new Error("Response is not JSON");
+  }
+
   return res.json();
 }
 
