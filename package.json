@@ -1,6 +1,6 @@
 {
   "name": "tiny-fetch-json",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Tiny wrapper around Fetch to query JSON APIs more easily",
   "keywords": [
     "api",
