@@ -15,7 +15,7 @@ async function fetchJson(resource, options = {}) {
   }
 
   const contentType = res.headers.get("content-type");
-  if (!contentType || !contentType.includes("application/json")) {
+  if (!contentType || !contentType.toLowerCase().includes("application/json")) {
     throw new Error("Response is not JSON");
   }
 
